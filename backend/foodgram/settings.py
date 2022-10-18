@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv(DJANGO_SECRET_KEY)
 
 DEBUG = os.getenv('DEBUG', default='True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('*', ALLOWED_HOSTS)
+ALLOWED_HOSTS = ['*']
 
 
 AUTH_USER_MODEL = 'users.User'
