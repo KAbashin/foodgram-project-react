@@ -3,18 +3,21 @@ services:
 
   db:
     image: postgres:13.0-alpine
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+    ports:
+      - "5432:5432"
 
   backend:
     image: kabashin/foodgram_backend:latest
     restart: always
     volumes:
-      - data_value:/code/data/
-      - static_value:/code/static/
-      - media_value:/code/media/
+      - data_value:/app/data/
+      - static_value:/app/static/
+      - media_value:/app/media/
     depends_on:
       - db
     env_file:
@@ -41,6 +44,7 @@ services:
     restart: always
     depends_on:
       - frontend
+      - backend
 
 volumes:
   postgres_data:
