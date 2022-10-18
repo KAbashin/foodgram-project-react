@@ -111,6 +111,8 @@ jobs:
               sudo echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
               sudo echo DB_HOST=${{ secrets.DB_HOST }} >> .env
               sudo echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+              sudo echo DEBUG=${{ secrets.DEBUG }} >> .env
+              sudo echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
 
               sudo docker-compose up -d --build
 
