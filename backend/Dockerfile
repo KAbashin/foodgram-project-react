@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN sudo apt-get update && sudo apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
 RUN python -m pip install --upgrade pip
 
