@@ -148,9 +148,7 @@ class RecipeIngredientSerializer(serializers.ModelSerializer):
         )
 
 
-class RecipeUserSerializer(
-    GetIsSubscribedMixin,
-    serializers.ModelSerializer):
+class RecipeUserSerializer(GetIsSubscribedMixin, serializers.ModelSerializer):
     is_subscribed = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
