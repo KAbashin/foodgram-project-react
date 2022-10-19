@@ -13,7 +13,8 @@ class Ingredient(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
-        help_text='Введите название продуктов'
+        help_text='Введите название продуктов',
+        db_index=True,
     )
     measurement_unit = models.CharField(
         verbose_name='Единица измерения',
@@ -35,7 +36,8 @@ class Tag(models.Model):
     name = models.CharField(
         verbose_name='Название',
         unique=True,
-        max_length=50
+        max_length=50,
+        db_index=True,
     )
     color = models.CharField(
         verbose_name='Цветовой HEX-код',
@@ -47,8 +49,8 @@ class Tag(models.Model):
                 message='Введенное значение не является цветом в формате HEX!'
             )
         ],
-        default='#00f0ff',
-        help_text='Введите цвет тега',
+        default='#006400',
+        help_text='Введите цвет тега. Например, #006400',
     )
     slug = models.SlugField(
         verbose_name='Текстовый идентификатор тега',
@@ -80,6 +82,7 @@ class Recipe(models.Model):
         verbose_name='Название рецепта',
         max_length=200,
         help_text='Введите название рецепта',
+        db_index=True,
     )
     image = models.ImageField(
         verbose_name='Изображение',
@@ -92,8 +95,6 @@ class Recipe(models.Model):
         verbose_name='Описание',
         help_text='Введите описания рецепта'
     )
-#    cooking_time = models.BigIntegerField(
-#        'Время приготовления рецепта')
     ingredients = models.ManyToManyField(
         Ingredient,
         verbose_name='Ингредиенты',
@@ -110,7 +111,7 @@ class Recipe(models.Model):
         verbose_name='Время приготовления',
         validators=[
             MinValueValidator(1, message='Минимальное значение 1!'),
-            MaxValueValidator(600, message='Максимальное значение 10000!')
+            MaxValueValidator(600, message='Максимальное значение 600!')
         ],
         help_text='Введите время приготовления'
     )
