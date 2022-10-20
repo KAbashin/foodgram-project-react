@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.db import models
-from django.db.models.signals import post_save
 from django.core.validators import (MinValueValidator, MaxValueValidator,
                                     RegexValidator)
+from django.db import models
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 User = get_user_model()
@@ -14,7 +14,7 @@ class Ingredient(models.Model):
         verbose_name='Название',
         max_length=200,
         help_text='Введите название продуктов',
-        db_index=True,
+#        db_index=True,
     )
     measurement_unit = models.CharField(
         verbose_name='Единица измерения',
@@ -37,7 +37,7 @@ class Tag(models.Model):
         verbose_name='Название',
         unique=True,
         max_length=50,
-        db_index=True,
+#        db_index=True,
     )
     color = models.CharField(
         verbose_name='Цветовой HEX-код',
@@ -81,7 +81,7 @@ class Recipe(models.Model):
         verbose_name='Название рецепта',
         max_length=200,
         help_text='Введите название рецепта',
-        db_index=True,
+#        db_index=True,
     )
     image = models.ImageField(
         verbose_name='Изображение',
