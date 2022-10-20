@@ -14,7 +14,6 @@ class Ingredient(models.Model):
         verbose_name='Название',
         max_length=200,
         help_text='Введите название продуктов',
-#        db_index=True,
     )
     measurement_unit = models.CharField(
         verbose_name='Единица измерения',
@@ -37,7 +36,6 @@ class Tag(models.Model):
         verbose_name='Название',
         unique=True,
         max_length=50,
-#        db_index=True,
     )
     color = models.CharField(
         verbose_name='Цветовой HEX-код',
@@ -81,7 +79,7 @@ class Recipe(models.Model):
         verbose_name='Название рецепта',
         max_length=200,
         help_text='Введите название рецепта',
-#        db_index=True,
+        db_index=True,
     )
     image = models.ImageField(
         verbose_name='Изображение',
@@ -123,7 +121,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        ordering = ('-pub_date', )
+        ordering = ('-pub_date',)
 
     def __str__(self):
         return f'{self.author.email}, {self.name}'
