@@ -122,5 +122,5 @@ python manage.py load_tags
 
 
 
-Автор: <br>
+Автор: <br> 
 Константин Абашин E-mail: kabashin@mail.ru<br>
