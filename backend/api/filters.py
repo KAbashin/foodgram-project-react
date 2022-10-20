@@ -5,20 +5,19 @@ from users.models import User
 from recipes.models import Ingredient, Recipe
 
 
-class TagsMultipleChoiceField(filters.fields.MultipleChoiceField):
+class TagsMultipleChoiceField(
+        filters.fields.MultipleChoiceField):
     def validate(self, value):
         if self.required and not value:
             raise ValidationError(
                 self.error_messages['required'],
-                code='required'
-            )
+                code='required')
         for val in value:
             if val in self.choices and not self.valid_value(val):
                 raise ValidationError(
                     self.error_messages['invalid_choice'],
                     code='invalid_choice',
-                    params={'value': val},
-                )
+                    params={'value': val},)
 
 
 class TagsFilter(filters.AllValuesMultipleFilter):
@@ -31,8 +30,8 @@ class TagsFilter(filters.AllValuesMultipleFilter):
 class IngredientFilter(filters.FilterSet):
     """
       Настройка фильтра поиска модели продуктов.
-      """
-    name = filters.CharFilter(lookup_expr='startswith')
+    """
+    name = filters.CharFilter(lookup_expr='istartswith')
 
     class Meta:
         model = Ingredient
@@ -43,18 +42,19 @@ class RecipeFilter(filters.FilterSet):
     """
     Настройка фильтров модели рецептов.
     """
-    author = filters.ModelChoiceFilter(queryset=User.objects.all())
+    author = filters.ModelChoiceFilter(
+        queryset=User.objects.all())
     is_in_shopping_cart = filters.BooleanFilter(
         widget=filters.widgets.BooleanWidget(),
-        label='В корзине.',
+        label='В корзине.'
     )
     is_favorited = filters.BooleanFilter(
         widget=filters.widgets.BooleanWidget(),
-        label='В избранных.',
+        label='В избранных.'
     )
     tags = filters.AllValuesMultipleFilter(
         field_name='tags__slug',
-        label='Ссылка',
+        label='Ссылка'
     )
 
     class Meta:

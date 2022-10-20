@@ -6,12 +6,11 @@ load_dotenv()
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.getenv(DJANGO_SECRET_KEY)
+SECRET_KEY = 'ncjikqh$0u5lc@%qt%0s1b2y&1q#sh^ftt_1@)jq0)@%ndp^qf'
 
-DEBUG = os.getenv('DEBUG', default='True') == 'True'
+DEBUG = os.getenv('DEBUG', default='True')
 
 ALLOWED_HOSTS = ['*']
-
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -60,7 +59,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
-
 
 DATABASES = {
     'default': {

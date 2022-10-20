@@ -1,7 +1,8 @@
-
+![foodgram-project-react Workflow Status](https://github.com/KAbashin/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?branch=master&event=push)
 # Продуктовый помощник Foodgram (дополнить реадми)
 
-Проект доступен по адресу ... изменено.
+Проект доступен по адресу http://http://158.160.9.227
+
 
 ## Описание проекта Foodgram
 «Продуктовый помощник»: приложение, на котором пользователи публикуют рецепты, 
@@ -28,14 +29,15 @@ pip install -r requirements.txt
 ```
 - Создать файл .env в папке проекта:
 ```
-SECRET_KEY=p&l%385148kl9(vs
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_HOST=db
-DB_PORT=5432
-ALLOWED_HOSTS='*'
+DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
+DB_NAME=postgres # имя базы данных
+POSTGRES_USER=postgres # логин для подключения к базе данных
+POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
+DB_HOST=db # название сервиса (контейнера)
+DB_PORT=5432 # порт для подключения к БД
+DJANGO_SECRET_KEY=1234567 #секретный ключ Django
+DEBUG=True
+ALLOWED_HOSTS=*
 ```
 
 - Выполнить миграции:
