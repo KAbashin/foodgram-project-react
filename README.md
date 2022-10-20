@@ -1,7 +1,7 @@
 ![foodgram-project-react Workflow Status](https://github.com/KAbashin/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?branch=main&event=push)
 # Продуктовый помощник Foodgram (дополнить реадми)
 
-Проект доступен по адресу http://http://158.160.9.227
+Проект доступен по адресу http://158.160.9.227
 
 
 ## Описание проекта Foodgram
