@@ -79,7 +79,6 @@ class Recipe(models.Model):
         verbose_name='Название рецепта',
         max_length=200,
         help_text='Введите название рецепта',
-        db_index=True,
     )
     image = models.ImageField(
         verbose_name='Изображение',
