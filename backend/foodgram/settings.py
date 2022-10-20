@@ -6,11 +6,11 @@ load_dotenv()
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'ncjikqh$0u5lc@%qt%0s1b2y&1q#sh^ftt_1@)jq0)@%ndp^qf'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default='12345678987654321')
 
 DEBUG = os.getenv('DEBUG', default='True')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['158.160.9.227']
 
 AUTH_USER_MODEL = 'users.User'
 
