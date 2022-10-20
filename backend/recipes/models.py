@@ -75,7 +75,6 @@ class Recipe(models.Model):
         verbose_name='Автор',
         related_name='recipe',
         on_delete=models.CASCADE,
-        null=True,
         help_text='Выберите автора рецепта',
     )
     name = models.CharField(
@@ -140,7 +139,7 @@ class RecipeIngredient(models.Model):
         help_text='Выберите рецепт',
     )
     ingredient = models.ForeignKey(
-        Ingredient,
+        'Ingredient',
         on_delete=models.CASCADE,
         verbose_name='Ингредиент',
         related_name='ingredient',
