@@ -74,7 +74,7 @@ python manage.py createsuperuser
 ```bash
 python manage.py collectstatic --no-input
 ```
-- Загрузка в БД начальных данных: ингредиенты и теги
+- Загрузка в БД начальных данных: ингредиенты и теги 
 ```bash
 python manage.py load_ingrs
 python manage.py load_tags
