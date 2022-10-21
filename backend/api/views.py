@@ -34,7 +34,7 @@ FILENAME = 'shoppingcart.pdf'
 
 
 class GetObjectMixin:
-    """Миксин для удаления/добавления рецептов избранных/корзины."""
+    """Миксина для удаления/добавления рецептов избранных/корзины."""
 
     serializer_class = SubscribeRecipeSerializer
     permission_classes = (AllowAny,)
@@ -47,7 +47,7 @@ class GetObjectMixin:
 
 
 class PermissionAndPaginationMixin:
-    """Миксин для списка тегов и ингридиентов."""
+    """Миксина для списка тегов и ингридиентов."""
 
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = None
@@ -260,14 +260,18 @@ class RecipesViewSet(viewsets.ModelViewSet):
         return FileResponse(buffer, as_attachment=True, filename=FILENAME)
 
 
-class TagsViewSet(PermissionAndPaginationMixin, viewsets.ModelViewSet):
+class TagsViewSet(
+        PermissionAndPaginationMixin,
+        viewsets.ModelViewSet):
     """Список тэгов."""
 
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
 
-class IngredientsViewSet(PermissionAndPaginationMixin, viewsets.ModelViewSet):
+class IngredientsViewSet(
+        PermissionAndPaginationMixin,
+        viewsets.ModelViewSet):
     """Список ингредиентов."""
 
     queryset = Ingredient.objects.all()

@@ -21,16 +21,10 @@ class TagsMultipleChoiceField(
 
 
 class TagsFilter(filters.AllValuesMultipleFilter):
-    """
-        Настройка фильтров модели тегов.
-    """
     field_class = TagsMultipleChoiceField
 
 
 class IngredientFilter(filters.FilterSet):
-    """
-      Настройка фильтра поиска модели продуктов.
-    """
     name = filters.CharFilter(lookup_expr='istartswith')
 
     class Meta:
@@ -39,29 +33,18 @@ class IngredientFilter(filters.FilterSet):
 
 
 class RecipeFilter(filters.FilterSet):
-    """
-    Настройка фильтров модели рецептов.
-    """
     author = filters.ModelChoiceFilter(
         queryset=User.objects.all())
     is_in_shopping_cart = filters.BooleanFilter(
         widget=filters.widgets.BooleanWidget(),
-        label='В корзине.'
-    )
+        label='В корзине.')
     is_favorited = filters.BooleanFilter(
         widget=filters.widgets.BooleanWidget(),
-        label='В избранных.'
-    )
+        label='В избранных.')
     tags = filters.AllValuesMultipleFilter(
         field_name='tags__slug',
-        label='Ссылка'
-    )
+        label='Ссылка')
 
     class Meta:
         model = Recipe
-        fields = [
-            'is_favorited',
-            'is_in_shopping_cart',
-            'author',
-            'tags'
-        ]
+        fields = ['is_favorited', 'is_in_shopping_cart', 'author', 'tags']
