@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
-from django.core import validators
 from django.db import models
 from django.db.models.signals import post_save
+from django.core import validators
 from django.dispatch import receiver
 
 User = get_user_model()
@@ -10,8 +10,7 @@ User = get_user_model()
 class Ingredient(models.Model):
     name = models.CharField(
         'Название ингредиента',
-        max_length=200,
-        db_index=True, )
+        max_length=200)
     measurement_unit = models.CharField(
         'Единица измерения ингредиента',
         max_length=200)
@@ -29,7 +28,6 @@ class Tag(models.Model):
     name = models.CharField(
         'Имя',
         max_length=60,
-        db_index=True,
         unique=True)
     color = models.CharField(
         'Цвет',
@@ -57,7 +55,6 @@ class Recipe(models.Model):
         verbose_name='Автор')
     name = models.CharField(
         'Название рецепта',
-        db_index=True,
         max_length=255)
     image = models.ImageField(
         'Изображение рецепта',
@@ -86,7 +83,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        ordering = ('-pub_date',)
+        ordering = ('-pub_date', )
 
     def __str__(self):
         return f'{self.author.email}, {self.name}'
@@ -106,7 +103,7 @@ class RecipeIngredient(models.Model):
         validators=(
             validators.MinValueValidator(
                 1, message='Мин. количество ингридиентов 1'),),
-        verbose_name='Количество', )
+        verbose_name='Количество',)
 
     class Meta:
         verbose_name = 'Количество ингредиента'
