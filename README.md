@@ -1,11 +1,13 @@
 ![foodgram-project-react Workflow Status](https://github.com/KAbashin/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?branch=main&event=push)
 # Продуктовый помощник Foodgram 
+```
+Временный блок для Максима Г. 
 
 Проект доступен по адресу http://158.160.9.227
-
 Тестовый суперюзер:<br>
 login: super@mail.com<br>
 password: A112233a<br>
+```
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/-Django-464646?style=flat&logo=Django&logoColor=56C0C0&color=008080)](https://www.djangoproject.com/)
@@ -27,6 +29,11 @@ password: A112233a<br>
 
 
 ## Запуск проекта в dev-режиме
+
+- Клонируйте репозиторий с проектом на свой компьютер. В терминале из рабочей директории выполните команду:
+```bash
+git clone git@github.com:KAbashin/foodgram-project-react.git
+```
 
 - Установить и активировать виртуальное окружение
 
@@ -54,8 +61,7 @@ SECRET_KEY=1234567 #секретный ключ Django
 DEBUG=True
 ```
 
-- Выполнить миграции:
-
+### Выполните миграции:
 ```bash
 python manage.py migrate
 ```
@@ -70,15 +76,76 @@ python manage.py runserver
 python manage.py createsuperuser
 ```
 
-- Сбор статики
+### Загрузите статику:
 ```bash
 python manage.py collectstatic --no-input
 ```
-- Загрузка в БД начальных данных: ингредиенты и теги 
+### Заполните базу тестовыми данными: 
 ```bash
 python manage.py load_ingrs
 python manage.py load_tags 
 ```
+Теперь приложение будет доступно в браузере по адресу localhost/admin/
+Логин: super@mail.com<br>
+Пароль: A112233a<br>
+
+## Запуск проекта через Docker
+
+Установите Docker, используя инструкции с официального сайта:
+- для [Windows и MacOS](https://www.docker.com/products/docker-desktop)
+- для [Linux](https://docs.docker.com/engine/install/ubuntu/). Отдельно потребуется установть [Docker Compose](https://docs.docker.com/compose/install/)
+
+Клонируйте репозиторий с проектом на свой компьютер.
+В терминале из рабочей директории выполните команду:
+```bash
+git clone git@github.com:KAbashin/foodgram-project-react.git
+```
+
+- в Docker cоздаем образ :
+```bash
+docker build -t foodgram .
+```
+
+Выполните команду:
+```bash
+cd ../infra
+docker-compose up -d --build
+```
+
+- В результате должны быть собрано три контейнера, при введении следующей команды получаем список запущенных контейнеров:  
+```bash
+docker-compose ps
+```
+Назначение контейнеров:  
+
+|          IMAGES           | NAMES                |        DESCRIPTIONS         |
+|:-------------------------:|:---------------------|:---------------------------:|
+|       nginx:1.19.3        | infra-_nginx_1       |   контейнер HTTP-сервера    |
+|       postgres:12.4       | infra-_db_1          |    контейнер базы данных    |
+| kabashin/back2:latest     | infra-_backend_1     | контейнер приложения Django |
+| kabashin/front:latest     | infra-_frontend_1    | контейнер приложения React  |
+
+
+### Выполните миграции:
+```bash
+docker-compose exec backend python manage.py migrate
+```
+
+### Загрузите статику:
+```bash
+docker-compose exec backend python manage.py collectstatic --no-input
+```
+
+### Заполните базу тестовыми данными:
+```bash
+docker-compose exec backend python manage.py load_ingrs
+docker-compose exec backend python manage.py load_tags   
+```
+Теперь приложение будет доступно в браузере по адресу localhost/admin/
+Логин: super@mail.com<br>
+Пароль: A112233a<br>
+
+
 
 ### Основные адреса: 
 
@@ -122,5 +189,7 @@ python manage.py load_tags
 
 
 
-Автор: <br> 
-Константин Абашин E-mail: kabashin@mail.ru<br>
+###Автор: <br> 
+_Константин Абашин_
+**email**: _kabashin@mail.ru_
+**telegram** _@Kabashin_
