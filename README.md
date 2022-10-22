@@ -4,9 +4,9 @@
 Временный блок для Максима Г. 
 
 Проект доступен по адресу http://158.160.9.227
-Тестовый суперюзер:<br>
-login: super@mail.com<br>
-password: A112233a<br>
+Тестовый суперюзер: 
+login: super@mail.com 
+password: A112233a 
 ```
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
@@ -189,7 +189,7 @@ docker-compose exec backend python manage.py load_tags
 
 
 
-###Автор:### <br> 
+###Автор:  
 _Константин Абашин_<br>
 **email**: _kabashin@mail.ru_<br>
 **telegram** _@Kabashin_
