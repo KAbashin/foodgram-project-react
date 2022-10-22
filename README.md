@@ -122,7 +122,7 @@ docker-compose ps
 |:-------------------------:|:---------------------|:---------------------------:|
 |       nginx:1.19.3        | infra-_nginx_1       |   контейнер HTTP-сервера    |
 |       postgres:12.4       | infra-_db_1          |    контейнер базы данных    |
-| kabashin/back2:latest     | infra-_backend_1     | контейнер приложения Django |
+| kabashin/back3:latest     | infra-_backend_1     | контейнер приложения Django |
 | kabashin/front:latest     | infra-_frontend_1    | контейнер приложения React  |
 
 
@@ -141,7 +141,7 @@ docker-compose exec backend python manage.py collectstatic --no-input
 docker-compose exec backend python manage.py load_ingrs
 docker-compose exec backend python manage.py load_tags   
 ```
-Теперь приложение будет доступно в браузере по адресу localhost/admin/
+Теперь приложение будет доступно в браузере по адресу localhost/admin/<br>
 Логин: super@mail.com<br>
 Пароль: A112233a<br>
 
@@ -189,7 +189,7 @@ docker-compose exec backend python manage.py load_tags
 
 
 
-###Автор: <br> 
-_Константин Абашин_
-**email**: _kabashin@mail.ru_
+### Автор:  
+_Константин Абашин_<br>
+**email**: _kabashin@mail.ru_<br>
 **telegram** _@Kabashin_

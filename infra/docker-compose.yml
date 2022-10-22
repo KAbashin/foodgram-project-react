@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: kabashin/foodgram_back2:latest
+    image: kabashin/foodgram_back3:latest
     restart: always
     volumes:
       - data_value:/code/data/
