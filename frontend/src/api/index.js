@@ -262,7 +262,7 @@ class Api {
     ).then(this.checkResponse)
   }
 
-  // subscriptions
+  // subscriptions  change  recipes_limit = 3 to 6
 
   getSubscriptions ({
     page, 

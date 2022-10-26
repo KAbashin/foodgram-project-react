@@ -20,9 +20,10 @@ from rest_framework.permissions import (SAFE_METHODS, AllowAny,
 from rest_framework.response import Response
 
 from api.filters import IngredientFilter, RecipeFilter
-from api.permissions import IsAdminOrReadOnly
+from api.permissions import IsAdminOrReadOnly, IsAuthorOrAdminOrReadOnly
 from recipes.models import (FavoriteRecipe, Ingredient, Recipe, ShoppingCart,
                             Subscribe, Tag)
+from .pagination import LimitPageNumberPagination
 from .serializers import (IngredientSerializer, RecipeReadSerializer,
                           RecipeWriteSerializer, SubscribeRecipeSerializer,
                           SubscribeSerializer, TagSerializer, TokenSerializer,
@@ -59,6 +60,7 @@ class AddAndDeleteSubscribe(
     """Подписка и отписка от пользователя."""
 
     serializer_class = SubscribeSerializer
+    pagination_class = LimitPageNumberPagination
 
     def get_queryset(self):
         return self.request.user.follower.select_related(
@@ -115,6 +117,8 @@ class AddDeleteShoppingCart(
         generics.ListCreateAPIView):
     """Добавление и удаление рецепта в/из корзины."""
 
+    pagination_class = LimitPageNumberPagination
+
     def create(self, request, *args, **kwargs):
         instance = self.get_object()
         request.user.shopping_cart.recipe.add(instance)
@@ -146,6 +150,7 @@ class UsersViewSet(UserViewSet):
 
     serializer_class = UserListSerializer
     permission_classes = (IsAuthenticated,)
+    pagination_class = LimitPageNumberPagination
 
     def get_queryset(self):
         return User.objects.annotate(
@@ -186,7 +191,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
     queryset = Recipe.objects.all()
     filterset_class = RecipeFilter
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthorOrAdminOrReadOnly, IsAuthenticatedOrReadOnly)
 
     def get_serializer_class(self):
         if self.request.method in SAFE_METHODS:

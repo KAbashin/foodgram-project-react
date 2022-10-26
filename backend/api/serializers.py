@@ -275,21 +275,14 @@ class SubscribeRecipeSerializer(serializers.ModelSerializer):
 
 
 class SubscribeSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(
-        source='author.id')
-    email = serializers.EmailField(
-        source='author.email')
-    username = serializers.CharField(
-        source='author.username')
-    first_name = serializers.CharField(
-        source='author.first_name')
-    last_name = serializers.CharField(
-        source='author.last_name')
+    id = serializers.ReadOnlyField(source='author.id')
+    email = serializers.ReadOnlyField(source='author.email')
+    username = serializers.ReadOnlyField(source='author.username')
+    first_name = serializers.ReadOnlyField(source='author.first_name')
+    last_name = serializers.ReadOnlyField(source='author.last_name')
     recipes = serializers.SerializerMethodField()
-    is_subscribed = serializers.BooleanField(
-        read_only=True)
-    recipes_count = serializers.IntegerField(
-        read_only=True)
+    is_subscribed = serializers.SerializerMethodField()
+    recipes_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Subscribe
@@ -297,12 +290,28 @@ class SubscribeSerializer(serializers.ModelSerializer):
             'email', 'id', 'username', 'first_name', 'last_name',
             'is_subscribed', 'recipes', 'recipes_count',)
 
-    def get_recipes(self, obj):
+    def get_is_subscribed(self, obj):
         request = self.context.get('request')
-        limit = request.GET.get('recipes_limit')
-        recipes = (
-            obj.author.recipe.all()[:int(limit)] if limit
-            else obj.author.recipe.all())
-        return SubscribeRecipeSerializer(
-            recipes,
-            many=True).data
+        if not request:
+            return True
+        return (
+                Subscribe.objects.filter(
+                    user=request.user,
+                    author__id=obj.author.id
+                ).exists()
+                and request.user.is_authenticated
+        )
+
+    def get_recipes_count(self, obj):
+        return Recipe.objects.filter(author=obj.author).count()
+
+    def get_recipes(self, obj):
+        try:
+            recipes_limit = int(
+                self.context.get('request').query_params['recipes_limit']
+            )
+            recipes = Recipe.objects.filter(author=obj.author)[:recipes_limit]
+        except Exception:
+            recipes = Recipe.objects.filter(author=obj.author)
+        serializer = SubscribeRecipeSerializer(recipes, many=True,)
+        return serializer.data
