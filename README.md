@@ -1,13 +1,6 @@
 ![foodgram-project-react Workflow Status](https://github.com/KAbashin/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?branch=main&event=push)
 # Продуктовый помощник Foodgram 
-```
-Временный блок для Максима Г. 
 
-Проект доступен по адресу http://158.160.9.227
-Тестовый суперюзер:<br>
-login: super@mail.com<br>
-password: A112233a<br>
-```
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/-Django-464646?style=flat&logo=Django&logoColor=56C0C0&color=008080)](https://www.djangoproject.com/)
